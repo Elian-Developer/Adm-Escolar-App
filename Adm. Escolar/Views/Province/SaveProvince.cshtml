@@ -1,0 +1,35 @@
+﻿@using AdmEscolar.Business.ViewModels.Province
+@model SaveProvinceViewModel
+
+@{
+    var CreateMode = Model.Id == 0 ? true : false;
+    ViewData["Title"] = "SaveProvince";
+}
+
+<div class="container-fluid">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-primary text-white text-center">
+                <h4>@(CreateMode ? "Creating a new Province" : $"Editing Province: {Model.Description}")</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="Province" asp-action="@(CreateMode ? "Create" : "Edit")">
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Desciption</label>
+                        <input asp-for="Description" class="form-control" type="text" />
+                    </div>
+
+                    <input asp-for="Id" type="hidden" />
+
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-outline-primary float-lg-end">@(CreateMode ? "Create Classroom" : "Edit Classroom")</button>
+                        <a asp-controller="Province" asp-action="Index" class="btn btn-outline-warning">Back</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

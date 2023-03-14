@@ -1,0 +1,32 @@
+﻿@using AdmEscolar.Business.ViewModels.Alumns
+@model SaveAlumnsViewModel
+
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container-fluid">
+
+    <form method="post" asp-controller="Alumns" asp-action="DeletePost">
+
+        <div class="card col-8 offset-2">
+            <div class="card-header bg-black text-white">
+                <h4 class="text-center fst-italic">Removing the Alumn: @Model.Name @Model.LastName</h4>
+            </div>
+            <div class="card-body">
+                <h5 class="fst-italic">Are you sure you want remove @Model.Name @Model.LastName of the Student List?</h5>
+            </div>
+            <div class="card-footer">
+                <div>
+                    <button type="submit" class="btn btn-outline-danger">Remove</button>
+                    <a asp-controller="Alumns" asp-action="Index" class="btn btn-outline-warning">Back</a>
+                </div>
+            </div>
+        </div>
+
+        <input asp-for="Id" type="hidden">
+
+    </form>
+</div>
+

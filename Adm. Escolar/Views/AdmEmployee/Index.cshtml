@@ -1,0 +1,82 @@
+﻿@using AdmEscolar.Business.ViewModels.AdmEmployee
+@model List<AdmEmployeeViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    var count = 0;
+}
+
+<div class="text-center text-black fst-italic">
+    <h4>Administratives Employees List</h4>
+</div>
+
+
+<div class="row">
+    <div class="mb-3 mt-3 col-4">
+        <a asp-controller="AdmEmployee" asp-action="Create" class="btn btn-outline-primary">Create new</a>
+    </div>
+
+    <div class="col-4 offset-4 mt-4">
+        <div class="mb-3">
+            <div class="container-fluid">
+
+                <form class="d-flex" role="Search" method="post" asp-controller="AdmEmployee" asp-action="Index">
+
+                    <input class="form-control me-2 border-dark background" type="text" placeholder="Search by department name" aria-label="Search" name="DepartmentName">
+
+                    <button class="btn btn-outline-dark" type="submit">Search</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+
+    @if(Model == null || Model.Count == 0){
+
+        <h4>There aren't any Administrative Employee</h4>
+    }
+    else{
+
+    <div class="row mt-4">
+        <table class="table table-bordered border-dark">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Born Date</th>
+                    <th scope="col">Department</th>
+                    <th scope="col" class="text-center">Actions</th>
+                </tr>
+            </thead>
+
+            @foreach (AdmEmployeeViewModel item in Model)
+            {
+                count++;
+                <tbody>
+                    <tr>
+                        <td class="text-center">@count</td>
+                        <td>@item.Name</td>
+                        <td>@item.LastName</td>
+                        <td>@item.BornDate</td>
+                        <td>@item.Department</td>
+                        <td>
+                            <div class="text-center">
+                                <a asp-controller="AdmEmployee" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-success">Edit</a>
+                                <a asp-controller="AdmEmployee" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            }
+
+        </table>
+    </div>
+    }
+</div>
+

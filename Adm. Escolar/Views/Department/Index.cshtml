@@ -1,0 +1,44 @@
+﻿@using AdmEscolar.Business.ViewModels.Departments
+@model List<DepartmentViewModel>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid">
+
+    <div class="mb-3 mt-3">
+        <a asp-controller="Department" asp-action="Create" class="btn btn-outline-primary">Create New</a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        @if (Model.Count == 0 || Model == null)
+        {
+            <h4 class="fst-italic">There isn't any Department available.</h4>
+        }
+
+        @foreach (DepartmentViewModel item in Model)
+        {
+            <div class="col-4">
+                <div class="card zoom border-dark" style="background-color:aliceblue">
+                    <div class="card-header">
+                        <h4 class="card-title fst-italic text-center">Department:</h4>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <p class="mb-2 fw-bold text-center"><i> @item.Description</i></p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-controller="Department" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-success">Edit</a>
+                        <a asp-controller="Department" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
